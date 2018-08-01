@@ -1,7 +1,8 @@
 import React from 'react';
+import './CharComponent.css';
 
 const CharComponent = (props) => {
-  return <p onClick={props.delete}>{props.char}</p>
+  return <p className="CharComponent" onClick={props.delete}>{props.char}</p>
 };
 
 export default CharComponent;
