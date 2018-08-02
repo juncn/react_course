@@ -34,26 +34,33 @@ class App extends Component {
 
   togglePersonHandler = () => {
     const doesShow = this.state.showPerson;
-    this.setState({showPerson: !doesShow});
+    this.setState({ showPerson: !doesShow });
   }
 
   render() {
-    let persons = null;
+    const { persons, showPerson } = this.state;
+    // let persons = null;
     
-    if (this.state.showPerson) {
-      persons = <Persons 
-                  persons={this.state.persons}
-                  clicked={this.deletePersonHandler}
-                  changed={this.nameChangeHandler} />;
-    }
+    // if (showPerson) {
+    //   persons = <Persons 
+    //               persons={persons}
+    //               clicked={this.deletePersonHandler}
+    //               changed={this.nameChangeHandler} />;
+    // }
 
     return (
       <div className={classes.App}>
         <Cockpit 
-          showPerson={this.state.showPerson} 
-          persons={this.state.persons}
+          showPerson={showPerson} 
+          persons={persons}
           clicked={this.togglePersonHandler} />
-        {persons}
+        {showPerson 
+          ? <Persons 
+              persons={persons}
+              clicked={this.deletePersonHandler}
+              changed={this.nameChangeHandler} />
+          : null
+        }
       </div>
     );
   }
