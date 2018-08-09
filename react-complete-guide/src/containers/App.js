@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import Aux from '../hoc/Aux';
 import WithClass from '../hoc/WithClass';
 
 class App extends PureComponent {
@@ -68,17 +69,9 @@ class App extends PureComponent {
   render() {
     console.log('[App.js] Inside render');
     const { persons, showPerson } = this.state;
-    // let persons = null;
-    
-    // if (showPerson) {
-    //   persons = <Persons 
-    //               persons={persons}
-    //               clicked={this.deletePersonHandler}
-    //               changed={this.nameChangeHandler} />;
-    // }
 
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <button onClick={() => {this.setState({showPerson: true})}}>Show Persons</button>
         <Cockpit 
           showPerson={showPerson} 
@@ -91,9 +84,9 @@ class App extends PureComponent {
               changed={this.nameChangeHandler} />
           : null
         }
-      </WithClass>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default WithClass(App, classes.App);
