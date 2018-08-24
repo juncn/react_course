@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classes from './Person.css';
 import WithClass from '../../../hoc/WithClass';
 import Aux from '../../../hoc/Aux';
@@ -21,6 +22,7 @@ class Person extends Component {
   constructor(props) {
     super(props);
     console.log('[Person.js] Inside constructor');
+    this.inputElementRef = React.createRef();
   }
 
   componentWillMount() {
@@ -29,8 +31,15 @@ class Person extends Component {
 
   componentDidMount() {
     console.log('[Person.js] Inside componentDidMount');
+    // if (this.props.position === 0) {
+    //   this.inputElementRef.current.focus();
+    // }
   }
 
+  focus() {
+    this.inputElementRef.current.focus();
+  }
+  
   render() {
     console.log('[Person.js] Inside render');
     return (
@@ -41,10 +50,18 @@ class Person extends Component {
           type="text" 
           onChange={this.props.changed}
           value={this.props.name}
+          ref={this.inputElementRef}
         />
       </Aux>
     );
   }
 }
+
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.boolean,
+};
 
 export default WithClass(Person, classes.Person);
