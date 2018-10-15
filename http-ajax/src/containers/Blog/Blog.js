@@ -29,6 +29,7 @@ class Blog extends Component {
         </header>
         <Route exact path="/" component={Posts} />
         <Route exact path="/new-post" component={NewPost} />
+        // TODO: remove
         {/* <section>
           <FullPost id={this.state.selectedPostId} />
         </section>
