@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Posts from './Posts/Posts';
 import './Blog.css';
+
 
 class Blog extends Component {
   state = {
@@ -20,7 +22,7 @@ class Blog extends Component {
             </ul>
           </nav>
         </header>
-        <Posts />
+        <Route exact path="/" component={Posts} />
         {/* <section>
           <FullPost id={this.state.selectedPostId} />
         </section>
