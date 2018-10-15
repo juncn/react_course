@@ -37,7 +37,7 @@ class Blog extends Component {
   };
 
   render() {
-    let posts = <p style={{textAlign: 'center'}}>Something went wrong</p>
+    let posts = <p style={{ textAlign: 'center' }}>Something went wrong</p>;
     if (!this.state.error) {
       posts = this.state.posts.map(post => {
         return (
