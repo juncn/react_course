@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink, Switch } from 'react-router-dom';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 import './Blog.css';
 
 
@@ -18,18 +19,37 @@ class Blog extends Component {
         <header>
           <nav>
             <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to={{
-                pathname: '/new-post',
-                hash: '#submit',
-                search: '?quick-submit=true'
-              }}>New post</Link></li>
+              <li>
+                <NavLink 
+                  exact 
+                  to="/"
+                  activeClassName="my-active"
+                  activeStyle={{
+                    color: "red",
+                    textDecoration: "underline",
+                  }}
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={{
+                  pathname: '/new-post',
+                  hash: '#submit',
+                  search: '?quick-submit=true'
+                }}>
+                  New post
+              </NavLink>
+              </li>
             </ul>
           </nav>
         </header>
-        <Route exact path="/" component={Posts} />
-        <Route exact path="/new-post" component={NewPost} />
-        // TODO: remove
+        <Switch>
+          <Route exact path="/" component={Posts} />
+          <Route path="/new-post" component={NewPost} />
+          <Route exact path="/:id" component={FullPost} />
+        </Switch>
+        {/* TODO: remove */}
         {/* <section>
           <FullPost id={this.state.selectedPostId} />
         </section>
