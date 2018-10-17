@@ -22,7 +22,11 @@ class NewPost extends Component {
       .post('/posts', data)
       .then(response => {
         console.log(response);
-        this.setState({submitted: true});
+        // this.setState({submitted: true});
+        // ? Alternative way of redirect
+        // ? 'replace' does not push a new page to history stack
+        // ? thus, user cannot go back to NewPosts by clicking the back button in the browser
+        this.props.history.replace('/posts');
       });
   };
 
