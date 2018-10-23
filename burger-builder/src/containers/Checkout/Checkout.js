@@ -15,7 +15,7 @@ class Checkout extends Component {
     let price = 0;
     for (let param of query.entries()) {
       param[0] === 'price'
-        ? (price = param[0])
+        ? (price = param[1])
         : (tempIngredients[param[0]] = +param[1]);
     }
     this.setState({
