@@ -8,6 +8,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.PURCHASE_BURGER_SUCCESS:
+      console.log('[orderReducer]', action.payload);
       const newOrder = {
         ...action.payload.value,
         id: action.payload.id
