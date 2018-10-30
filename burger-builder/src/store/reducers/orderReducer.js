@@ -1,8 +1,8 @@
-import * as actionTypes from '../actions/actionTypes';
+import actionTypes from '../actions/actionTypes';
 
 const initialState = {
   orders: [],
-  loading: false,
+  loading: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,14 +20,14 @@ const reducer = (state = initialState, action) => {
     case actionTypes.PURCHASE_BURGER_FAIL:
       return {
         ...state,
-        loading: false,
+        loading: false
       };
     case actionTypes.PURCHASE_BURGER_START:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
-    default: 
+    default:
       return state;
   }
 };

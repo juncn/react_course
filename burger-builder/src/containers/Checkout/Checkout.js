@@ -30,13 +30,13 @@ class Checkout extends Component {
         </Fragment>
       );
     }
-    return {summary};
+    return <Fragment>{summary}</Fragment>;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    ingredients: state.ingredients
+    ingredients: state.burgerBuilderReducer.ingredients
   };
 };
 
