@@ -10,7 +10,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 // import actionTypes from '../../store/actions/actionTypes';
 
 // Actions
-import * as burgerBuilderAction from '../../store/actions';
+import * as actions from '../../store/actions';
 
 class BurgerBuilder extends Component {
   state = {
@@ -111,10 +111,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onIngredientAdded: ingredientName =>
-      dispatch(burgerBuilderAction.addIngredient(ingredientName)),
+      dispatch(actions.addIngredient(ingredientName)),
     onIngredientRemoved: ingredientName =>
-      dispatch(burgerBuilderAction.removeIngredient(ingredientName)),
-    onInitIngredients: () => dispatch(burgerBuilderAction.initIngredients())
+      dispatch(actions.removeIngredient(ingredientName)),
+    onInitIngredients: () => dispatch(actions.initIngredients())
   };
 };
 
