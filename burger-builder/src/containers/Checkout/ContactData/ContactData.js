@@ -156,7 +156,7 @@ class ContactData extends Component {
         config: this.state.orderForm[key]
       });
     }
-    const form = this.state.loading ? (
+    const form = this.props.loading ? (
       <Spinner />
     ) : (
       <form onSubmit={this.orderHandler}>
@@ -190,13 +190,14 @@ class ContactData extends Component {
 const mapStateToProps = state => {
   return {
     ingredients: state.ingredients,
-    totalPrice: state.totalPrice
+    totalPrice: state.totalPrice,
+    loading: state.loading,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: orderData => dispatch(actions.purchaseBurgerStart(orderData)),
+    onOrderBurger: orderData => dispatch(actions.purchaseBurger(orderData)),
   }; 
 };
 
