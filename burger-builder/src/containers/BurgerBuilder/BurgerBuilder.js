@@ -7,7 +7,10 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import actionTypes from '../../store/actions/actionTypes';
+// import actionTypes from '../../store/actions/actionTypes';
+
+// Actions
+import * as burgerBuilderAction from '../../store/actions';
 
 class BurgerBuilder extends Component {
   state = {
@@ -38,42 +41,7 @@ class BurgerBuilder extends Component {
     return sum > 0;
   };
 
-  // addIngredientHandler = type => {
-  //   const oldCount = this.props.ingredients[type];
-  //   const updatedCount = oldCount + 1;
-  //   const updatedIngredients = {
-  //     ...this.props.ingredients
-  //   };
-  //   updatedIngredients[type] = updatedCount;
-  //   const priceAddition = INGREDIENTS_PRICES[type];
-  //   const oldPrice = this.state.totalPrice;
-  //   const newPrice = oldPrice + priceAddition;
-  //   this.setState({
-  //     totalPrice: newPrice,
-  //     ingredients: updatedIngredients
-  //   });
-  //   this.updatePurchaseState(updatedIngredients);
-  // };
 
-  // removeIngredientHandler = type => {
-  //   const oldCount = this.props.ingredients[type];
-  //   if (oldCount <= 0) {
-  //     return;
-  //   }
-  //   const updatedCount = oldCount - 1;
-  //   const updatedIngredients = {
-  //     ...this.props.ingredients
-  //   };
-  //   updatedIngredients[type] = updatedCount;
-  //   const priceDeduction = INGREDIENTS_PRICES[type];
-  //   const oldPrice = this.state.totalPrice;
-  //   const newPrice = oldPrice - priceDeduction;
-  //   this.setState({
-  //     totalPrice: newPrice,
-  //     ingredients: updatedIngredients
-  //   });
-  //   this.updatePurchaseState(updatedIngredients);
-  // };
 
   purchaseHandler = () => {
     this.setState({ purchasing: true });
@@ -135,7 +103,7 @@ class BurgerBuilder extends Component {
             removeIngredient={this.props.onIngredientRemoved}
             disabled={disabledInfo}
             totalPrice={this.props.totalPrice}
-            purchasable={this.updatePurchaseState(this.props.ingredients)} 
+            purchasable={this.updatePurchaseState(this.props.ingredients)}
             ordered={this.purchaseHandler}
           />
         </Fragment>
@@ -165,10 +133,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIngredientAdded: ingredientName =>
-      dispatch({ type: actionTypes.ADD_INGREDIENT, payload: ingredientName }),
+    onIngredientAdded: (ingredientName='salad') => {
+      console.log('[BurgerBuilder]', ingredientName);
+      dispatch(burgerBuilderAction.addIngredient(ingredientName))
+    },
     onIngredientRemoved: ingredientName =>
-      dispatch({ type: actionTypes.REMOVE_INGREDIENT, payload: ingredientName })
+      dispatch(burgerBuilderAction.removeIngredient(ingredientName))
   };
 };
 
