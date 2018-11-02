@@ -20,7 +20,7 @@ class BurgerBuilder extends Component {
   componentDidMount() {
     this.props.onInitIngredients();
   }
-  n;
+
   updatePurchaseState = ingredients => {
     const sum = Object.keys(ingredients)
       .map(igKey => {
@@ -41,6 +41,7 @@ class BurgerBuilder extends Component {
   };
 
   purchaseContinuedHandler = () => {
+    this.props.onInitPurchase();
     this.props.history.push('/checkout');
   };
 
@@ -114,7 +115,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.addIngredient(ingredientName)),
     onIngredientRemoved: ingredientName =>
       dispatch(actions.removeIngredient(ingredientName)),
-    onInitIngredients: () => dispatch(actions.initIngredients())
+    onInitIngredients: () => dispatch(actions.initIngredients()),
+    onInitPurchase: () => dispatch(actions.purchaseInit()),
   };
 };
 
