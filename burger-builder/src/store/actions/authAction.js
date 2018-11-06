@@ -39,7 +39,11 @@ export const auth = (email, password, isSignup) => {
       .post(url, authData)
       .then(response => {
         console.log(response);
-        dispatch(authSuccess(response.data));
+        const data = {
+          idToken: response.data.idToken,
+          userId: response.data.localId
+        };
+        dispatch(authSuccess(data));
       })
       .catch(error => {
         console.log(error);
