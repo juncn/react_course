@@ -191,14 +191,14 @@ const mapStateToProps = state => {
   return {
     ingredients: state.burgerBuilderReducer.ingredients,
     totalPrice: state.burgerBuilderReducer.totalPrice,
-    loading: state.orderReducer.loading,
+    loading: state.orderReducer.loading
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: orderData => dispatch(actions.purchaseBurger(orderData)),
-  }; 
+    onOrderBurger: orderData => dispatch(actions.purchaseBurger(orderData))
+  };
 };
 
 export default connect(
