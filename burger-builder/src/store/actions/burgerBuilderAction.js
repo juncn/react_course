@@ -1,5 +1,6 @@
 import axios from '../../axios-orders';
 import actionTypes from './actionTypes';
+import { databaseURL } from '../../apiKey';
 
 export const addIngredient = name => {
   return {
@@ -31,7 +32,7 @@ export const fetchIngredientsFailed = () => {
 export const initIngredients = () => {
   return dispatch => {
     axios
-      .get('https://react-my-burger-builder-61c02.firebaseio.com/ingredients.json')
+      .get(`${databaseURL}/ingredients.json`)
       .then(response => {
         dispatch(setIngredients(response.data));
       })
