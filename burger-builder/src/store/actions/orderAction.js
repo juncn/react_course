@@ -66,11 +66,11 @@ export const fetchOrdersFail = error => {
   };
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = token => {
   return dispatch => {
     dispatch(fetchOrdersStart());
     axios
-      .get('/orders.json')
+      .get(`/orders.json?auth=${token}`)
       .then(response => {
         const fetchedOrders = [];
         for (let key in response.data) {
